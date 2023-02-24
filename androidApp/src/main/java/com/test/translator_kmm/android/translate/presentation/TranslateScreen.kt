@@ -4,27 +4,33 @@ import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.material.Scaffold
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalClipboardManager
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.test.translator_kmm.android.R
 import com.test.translator_kmm.android.core.presentation.Routes
-import com.test.translator_kmm.android.translate.presentation.components.LanguageDropDown
-import com.test.translator_kmm.android.translate.presentation.components.SwapLanguagesButton
-import com.test.translator_kmm.android.translate.presentation.components.TranslateTextField
-import com.test.translator_kmm.android.translate.presentation.components.rememberTextToSpeech
+import com.test.translator_kmm.android.translate.presentation.components.*
+import com.test.translator_kmm.translate.domain.translate.TranslateError
 import com.test.translator_kmm.translate.presentation.TranslateEvent
 import com.test.translator_kmm.translate.presentation.TranslateState
 import java.util.*
@@ -37,9 +43,36 @@ fun TranslateScreen(
 
     val context = LocalContext.current
 
-    Scaffold(floatingActionButton = {
+    LaunchedEffect(key1 = state.error) {
+        val message = when (state.error) {
+            TranslateError.SERVICE_UNAVAILABLE -> context.getString(R.string.errorServiceUnavailable)
+            TranslateError.CLIENT_ERROR -> context.getString(R.string.clienError)
+            TranslateError.SERVER_ERROR -> context.getString(R.string.serverError)
+            TranslateError.UNKNOWN_ERROR -> context.getString(R.string.unknownError)
+            null -> null
+        }
 
-    }) { padding ->
+        message?.let {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            onEvent(TranslateEvent.OnErrorSeen)
+        }
+    }
+
+    Scaffold(floatingActionButton = {
+        FloatingActionButton(
+            onClick = { onEvent(TranslateEvent.RecordAudio) },
+            backgroundColor = MaterialTheme.colors.primary,
+            contentColor = MaterialTheme.colors.onPrimary,
+            modifier = Modifier.size(75.dp)
+        ) {
+            Icon(
+                imageVector = ImageVector.vectorResource(id = R.drawable.mic),
+                contentDescription = stringResource(
+                    id = R.string.recordAudio
+                )
+            )
+        }
+    }, floatingActionButtonPosition = FabPosition.Center) { padding ->
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
@@ -79,7 +112,8 @@ fun TranslateScreen(
                 val keyboardController = LocalSoftwareKeyboardController.current
                 val tts = rememberTextToSpeech()
 
-                TranslateTextField(fromText = state.fromText,
+                TranslateTextField(
+                    fromText = state.fromText,
                     toText = state.toText,
                     isTranslating = state.isTranslating,
                     fromLanguage = state.fromLanguage,
@@ -105,17 +139,34 @@ fun TranslateScreen(
                     onSpeakerClick = {
                         tts.language = state.toLanguage.toLocale() ?: Locale.ENGLISH
                         tts.speak(
-                            state.toText,
-                            TextToSpeech.QUEUE_FLUSH,
-                            null,
-                            null
+                            state.toText, TextToSpeech.QUEUE_FLUSH, null, null
                         )
                     },
                     onTextFieldClick = {
                         onEvent(TranslateEvent.EditTranslation)
-                    }, modifier = Modifier.fillMaxWidth()
+                    },
+                    modifier = Modifier.fillMaxWidth()
                 )
             }
+            item {
+                if (state.history.isNotEmpty()) {
+                    Text(
+                        text = stringResource(id = R.string.history),
+                        style = MaterialTheme.typography.h2
+                    )
+                }
+            }
+
+
+            items(state.history) { history ->
+                TranslateHistoryItem(
+                    item = history,
+                    onClick = { onEvent(TranslateEvent.SelectHistoryItem(history)) },
+                    modifier = Modifier.fillMaxWidth()
+                )
+            }
+
+            item { Spacer(modifier = Modifier.height(90.dp)) }
         }
     }
 
@@ -130,11 +181,20 @@ fun TranslateRoot() {
         composable(Routes.TRANSLATE) {
             val viewModel: AndroidTranslateViewModel = hiltViewModel()
             val state by viewModel.state.collectAsState()
-            TranslateScreen(state = state, onEvent = viewModel::onEvent)
+            TranslateScreen(state = state, onEvent = { event ->
+                when (event) {
+                    is TranslateEvent.RecordAudio -> navController.navigate(Routes.VOICE_TO_TEXT + "/${state.fromLanguage.language.langCode}")
+                    else -> viewModel.onEvent(event)
+                }
+            })
         }
 
-        composable(Routes.VOICE_TO_TEXT) {
-
+        composable(Routes.VOICE_TO_TEXT + "/{languageCode}",
+            arguments = listOf(navArgument("languageCode") {
+                type = NavType.StringType
+                defaultValue = "en"
+            })) {
+            Text(text = "Voice to Text")
         }
 
     }

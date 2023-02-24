@@ -8,4 +8,10 @@
     <string name="copy">Copy</string>
     <string name="playLoud">Play Loud</string>
     <string name="copiedToClipboard">Copied to clipboard!</string>
+    <string name="history">History</string>
+    <string name="errorServiceUnavailable">Oops, an error happened. Please try later!</string>
+    <string name="clienError">Oops, an error happend.</string>
+    <string name="serverError">An error happened. Please try later!</string>
+    <string name="unknownError">Oops, an unknown error happened</string>
+    <string name="recordAudio">Record audio</string>
 </resources>
