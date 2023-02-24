@@ -3,7 +3,7 @@ plugins {
     kotlin("native.cocoapods")
     id("com.android.library")
     kotlin("plugin.serialization") version Deps.kotlinVersion
-    id("com.squareup.sqldelight")
+    id("app.cash.sqldelight")
 }
 
 kotlin {
@@ -22,10 +22,11 @@ kotlin {
         summary = "Some description for the Shared Module"
         homepage = "Link to the Shared Module homepage"
         version = "1.0"
-        ios.deploymentTarget = "14.1"
+        ios.deploymentTarget = "16.3.1"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = true
         }
     }
     
@@ -53,7 +54,7 @@ kotlin {
                 implementation(Deps.sqlDelightAndroidDriver)
             }
         }
-        val androidUnitTest by getting
+//        val androidUnitTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -86,5 +87,13 @@ android {
     defaultConfig {
         minSdk = 24
         targetSdk = 33
+    }
+}
+
+sqldelight {
+    databases {
+        create("TranslateDatabase") {
+            packageName.set("com.test.translator_kmm.database")
+        }
     }
 }

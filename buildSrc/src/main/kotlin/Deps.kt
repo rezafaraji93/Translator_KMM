@@ -48,17 +48,17 @@ object Deps {
     private const val gradleVersion = "7.4.1"
     const val androidBuildTools = "com.android.tools.build:gradle:$gradleVersion"
 
-    private const val sqlDelightGradleVersion = "1.5.5"
-    const val sqlDelightGradlePlugin = "com.squareup.sqldelight:gradle-plugin:$sqlDelightGradleVersion"
+    private const val sqlDelightGradleVersion = "2.0.0-alpha05"
+    const val sqlDelightGradlePlugin = "app.cash.sqldelight:gradle-plugin:$sqlDelightGradleVersion"
 
     const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
     // SQLDELIGHT
-    private const val sqlDelightVersion = "1.5.5"
-    const val sqlDelightRuntime = "com.squareup.sqldelight:runtime:$sqlDelightVersion"
-    const val sqlDelightAndroidDriver = "com.squareup.sqldelight:android-driver:$sqlDelightVersion"
-    const val sqlDelightNativeDriver = "com.squareup.sqldelight:native-driver:$sqlDelightVersion"
-    const val sqlDelightCoroutinesExtensions = "com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion"
+    private const val sqlDelightVersion = "2.0.0-alpha05"
+    const val sqlDelightRuntime = "app.cash.sqldelight:runtime:$sqlDelightVersion"
+    const val sqlDelightAndroidDriver = "app.cash.sqldelight:android-driver:$sqlDelightVersion"
+    const val sqlDelightNativeDriver = "app.cash.sqldelight:native-driver:$sqlDelightVersion"
+    const val sqlDelightCoroutinesExtensions = "app.cash.sqldelight:coroutines-extensions:$sqlDelightVersion"
 
     // TESTING
     private const val assertKVersion = "0.25"
