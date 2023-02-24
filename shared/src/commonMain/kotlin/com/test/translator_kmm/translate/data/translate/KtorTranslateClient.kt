@@ -19,8 +19,7 @@ class KtorTranslateClient(
         fromlanguage: Language, fromText: String, toLanguage: Language
     ): String {
         val result = try {
-            httpClient.post {
-                url(NetworkConstants.BASE_URL + "/translate")
+            httpClient.post(NetworkConstants.BASE_URL + "translate") {
                 contentType(ContentType.Application.Json)
                 setBody(
                     TranslateDto(
@@ -32,6 +31,7 @@ class KtorTranslateClient(
 
             }
         } catch (e: IOException) {
+            e.printStackTrace()
             throw TranslateException(TranslateError.SERVICE_UNAVAILABLE)
         }
         when (result.status.value) {
