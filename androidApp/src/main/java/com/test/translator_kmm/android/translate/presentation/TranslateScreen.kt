@@ -1,5 +1,6 @@
 package com.test.translator_kmm.android.translate.presentation
 
+import android.speech.tts.TextToSpeech
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -23,8 +24,10 @@ import com.test.translator_kmm.android.core.presentation.Routes
 import com.test.translator_kmm.android.translate.presentation.components.LanguageDropDown
 import com.test.translator_kmm.android.translate.presentation.components.SwapLanguagesButton
 import com.test.translator_kmm.android.translate.presentation.components.TranslateTextField
+import com.test.translator_kmm.android.translate.presentation.components.rememberTextToSpeech
 import com.test.translator_kmm.translate.presentation.TranslateEvent
 import com.test.translator_kmm.translate.presentation.TranslateState
+import java.util.*
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -74,6 +77,7 @@ fun TranslateScreen(
 
                 val clipboardManager = LocalClipboardManager.current
                 val keyboardController = LocalSoftwareKeyboardController.current
+                val tts = rememberTextToSpeech()
 
                 TranslateTextField(fromText = state.fromText,
                     toText = state.toText,
@@ -98,10 +102,19 @@ fun TranslateScreen(
                         ).show()
                     },
                     onCloseClick = { onEvent(TranslateEvent.CloseTranslation) },
-                    onSpeakerClick = { },
+                    onSpeakerClick = {
+                        tts.language = state.toLanguage.toLocale() ?: Locale.ENGLISH
+                        tts.speak(
+                            state.toText,
+                            TextToSpeech.QUEUE_FLUSH,
+                            null,
+                            null
+                        )
+                    },
                     onTextFieldClick = {
                         onEvent(TranslateEvent.EditTranslation)
-                    }, modifier = Modifier.fillMaxWidth())
+                    }, modifier = Modifier.fillMaxWidth()
+                )
             }
         }
     }
