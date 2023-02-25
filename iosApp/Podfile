@@ -2,4 +2,5 @@ target 'iosApp' do
   use_frameworks!
   platform :ios, '14.1'
   pod 'shared', :path => '../shared'
+  pod 'FirebaseCore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'master'
 end
