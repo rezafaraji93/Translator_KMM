@@ -1,26 +1,28 @@
 package com.test.translator_kmm.translate.presentation
 
+import com.rickclephas.kmm.viewmodel.KMMViewModel
+import com.rickclephas.kmm.viewmodel.coroutineScope
+import com.rickclephas.kmm.viewmodel.stateIn
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
 import com.test.translator_kmm.core.domain.util.Resource
-import com.test.translator_kmm.core.domain.util.toCommonStateFlow
 import com.test.translator_kmm.core.presentation.UiLanguage
 import com.test.translator_kmm.translate.domain.history.HistoryDataSource
 import com.test.translator_kmm.translate.domain.translate.Translate
 import com.test.translator_kmm.translate.domain.translate.TranslateException
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.inject
 
-class TranslateViewModel(
-    private val translate: Translate,
-    private val historyDataSource: HistoryDataSource,
-    private val coroutineScope: CoroutineScope?
-) {
+open class TranslateViewModelShared : KMMViewModel(), KoinComponent {
 
-    private val viewModelScope = coroutineScope ?: CoroutineScope(Dispatchers.Main)
+    private val translate: Translate by inject()
+    private val historyDataSource: HistoryDataSource by inject()
 
     private val _state = MutableStateFlow(TranslateState())
+
+    @NativeCoroutinesState
     val state = combine(
         _state, historyDataSource.getHistory()
     ) { state, history ->
@@ -36,7 +38,6 @@ class TranslateViewModel(
             })
         } else state
     }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), TranslateState())
-        .toCommonStateFlow()
 
     private var translateJob: Job? = null
 
@@ -145,7 +146,7 @@ class TranslateViewModel(
             return
         }
 
-        translateJob = viewModelScope.launch {
+        translateJob = viewModelScope.coroutineScope.launch {
             _state.update {
                 it.copy(
                     isTranslating = true

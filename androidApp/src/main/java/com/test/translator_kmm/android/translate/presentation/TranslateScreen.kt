@@ -21,7 +21,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -33,6 +32,8 @@ import com.test.translator_kmm.android.translate.presentation.components.*
 import com.test.translator_kmm.translate.domain.translate.TranslateError
 import com.test.translator_kmm.translate.presentation.TranslateEvent
 import com.test.translator_kmm.translate.presentation.TranslateState
+import com.test.translator_kmm.translate.presentation.TranslateViewModelShared
+import org.koin.androidx.compose.koinViewModel
 import java.util.*
 
 @OptIn(ExperimentalComposeUiApi::class)
@@ -131,7 +132,7 @@ fun TranslateScreen(
                         })
                         Toast.makeText(
                             context,
-                            context.getString(com.test.translator_kmm.android.R.string.copiedToClipboard),
+                            context.getString(R.string.copiedToClipboard),
                             Toast.LENGTH_LONG
                         ).show()
                     },
@@ -179,7 +180,7 @@ fun TranslateRoot() {
     NavHost(navController = navController, startDestination = Routes.TRANSLATE) {
 
         composable(Routes.TRANSLATE) {
-            val viewModel: AndroidTranslateViewModel = hiltViewModel()
+            val viewModel: TranslateViewModelShared = koinViewModel()
             val state by viewModel.state.collectAsState()
             TranslateScreen(state = state, onEvent = { event ->
                 when (event) {

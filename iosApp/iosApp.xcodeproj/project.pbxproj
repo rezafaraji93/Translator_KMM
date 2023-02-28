@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -17,7 +17,6 @@
 		C981FA7529A9E31800C1D4F8 /* LanguageDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA7429A9E31800C1D4F8 /* LanguageDropDown.swift */; };
 		C981FA7829A9E35100C1D4F8 /* SmallLanguageIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA7729A9E35100C1D4F8 /* SmallLanguageIcon.swift */; };
 		C981FA7A29A9E37C00C1D4F8 /* SwapLanguageButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA7929A9E37C00C1D4F8 /* SwapLanguageButton.swift */; };
-		C981FA7C29A9E54100C1D4F8 /* IosTranslateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA7B29A9E54100C1D4F8 /* IosTranslateViewModel.swift */; };
 		C981FA7E29A9E55F00C1D4F8 /* TranslateScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA7D29A9E55F00C1D4F8 /* TranslateScreen.swift */; };
 		C981FA8029A9EFB400C1D4F8 /* GradientSurface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA7F29A9EFB400C1D4F8 /* GradientSurface.swift */; };
 		C981FA8229A9F00500C1D4F8 /* LanguageDisplay.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA8129A9F00500C1D4F8 /* LanguageDisplay.swift */; };
@@ -25,6 +24,10 @@
 		C981FA8629A9F05B00C1D4F8 /* TranslateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA8529A9F05B00C1D4F8 /* TranslateTextField.swift */; };
 		C981FA8829A9F19D00C1D4F8 /* TextToSpeech.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA8729A9F19D00C1D4F8 /* TextToSpeech.swift */; };
 		C981FA8A29A9F2F600C1D4F8 /* TranslateHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C981FA8929A9F2F600C1D4F8 /* TranslateHistoryItem.swift */; };
+		C9F34C4F29ACC40400D2B326 /* KmmViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9F34C4E29ACC40400D2B326 /* KmmViewModel.swift */; };
+		C9F34C5229ACC44300D2B326 /* KMMViewModelCore in Frameworks */ = {isa = PBXBuildFile; productRef = C9F34C5129ACC44300D2B326 /* KMMViewModelCore */; };
+		C9F34C5429ACC44300D2B326 /* KMMViewModelSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C9F34C5329ACC44300D2B326 /* KMMViewModelSwiftUI */; };
+		C9F34C5729ACC8C300D2B326 /* KMPNativeCoroutinesCombine in Frameworks */ = {isa = PBXBuildFile; productRef = C9F34C5629ACC8C300D2B326 /* KMPNativeCoroutinesCombine */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,7 +45,6 @@
 		C981FA7429A9E31800C1D4F8 /* LanguageDropDown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDropDown.swift; sourceTree = "<group>"; };
 		C981FA7729A9E35100C1D4F8 /* SmallLanguageIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallLanguageIcon.swift; sourceTree = "<group>"; };
 		C981FA7929A9E37C00C1D4F8 /* SwapLanguageButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwapLanguageButton.swift; sourceTree = "<group>"; };
-		C981FA7B29A9E54100C1D4F8 /* IosTranslateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosTranslateViewModel.swift; sourceTree = "<group>"; };
 		C981FA7D29A9E55F00C1D4F8 /* TranslateScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateScreen.swift; sourceTree = "<group>"; };
 		C981FA7F29A9EFB400C1D4F8 /* GradientSurface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientSurface.swift; sourceTree = "<group>"; };
 		C981FA8129A9F00500C1D4F8 /* LanguageDisplay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageDisplay.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 		C981FA8529A9F05B00C1D4F8 /* TranslateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateTextField.swift; sourceTree = "<group>"; };
 		C981FA8729A9F19D00C1D4F8 /* TextToSpeech.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextToSpeech.swift; sourceTree = "<group>"; };
 		C981FA8929A9F2F600C1D4F8 /* TranslateHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslateHistoryItem.swift; sourceTree = "<group>"; };
+		C9F34C4E29ACC40400D2B326 /* KmmViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KmmViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +60,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C9F34C5229ACC44300D2B326 /* KMMViewModelCore in Frameworks */,
+				C9F34C5729ACC8C300D2B326 /* KMPNativeCoroutinesCombine in Frameworks */,
+				C9F34C5429ACC44300D2B326 /* KMMViewModelSwiftUI in Frameworks */,
 				6C935951B2909F89E6178C02 /* Pods_iosApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -117,6 +123,7 @@
 			children = (
 				C981FA6C29A9DDA600C1D4F8 /* Colors.swift */,
 				C981FA7F29A9EFB400C1D4F8 /* GradientSurface.swift */,
+				C9F34C4E29ACC40400D2B326 /* KmmViewModel.swift */,
 			);
 			path = presentation;
 			sourceTree = "<group>";
@@ -133,7 +140,6 @@
 			isa = PBXGroup;
 			children = (
 				C981FA7129A9E07A00C1D4F8 /* components */,
-				C981FA7B29A9E54100C1D4F8 /* IosTranslateViewModel.swift */,
 				C981FA7D29A9E55F00C1D4F8 /* TranslateScreen.swift */,
 				C981FA8729A9F19D00C1D4F8 /* TextToSpeech.swift */,
 			);
@@ -191,6 +197,11 @@
 			dependencies = (
 			);
 			name = iosApp;
+			packageProductDependencies = (
+				C9F34C5129ACC44300D2B326 /* KMMViewModelCore */,
+				C9F34C5329ACC44300D2B326 /* KMMViewModelSwiftUI */,
+				C9F34C5629ACC8C300D2B326 /* KMPNativeCoroutinesCombine */,
+			);
 			productName = iosApp;
 			productReference = 7555FF7B242A565900829871 /* iosApp.app */;
 			productType = "com.apple.product-type.application";
@@ -219,6 +230,10 @@
 				Base,
 			);
 			mainGroup = 7555FF72242A565900829871;
+			packageReferences = (
+				C9F34C5029ACC44300D2B326 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */,
+				C9F34C5529ACC8C300D2B326 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */,
+			);
 			productRefGroup = 7555FF7C242A565900829871 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -310,7 +325,6 @@
 				C981FA7329A9E0AC00C1D4F8 /* LanguageDropDownItem.swift in Sources */,
 				C981FA8229A9F00500C1D4F8 /* LanguageDisplay.swift in Sources */,
 				C981FA7829A9E35100C1D4F8 /* SmallLanguageIcon.swift in Sources */,
-				C981FA7C29A9E54100C1D4F8 /* IosTranslateViewModel.swift in Sources */,
 				C981FA7529A9E31800C1D4F8 /* LanguageDropDown.swift in Sources */,
 				C981FA7A29A9E37C00C1D4F8 /* SwapLanguageButton.swift in Sources */,
 				C981FA6D29A9DDA600C1D4F8 /* Colors.swift in Sources */,
@@ -318,6 +332,7 @@
 				C981FA8829A9F19D00C1D4F8 /* TextToSpeech.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				C981FA8A29A9F2F600C1D4F8 /* TranslateHistoryItem.swift in Sources */,
+				C9F34C4F29ACC40400D2B326 /* KmmViewModel.swift in Sources */,
 				C981FA8629A9F05B00C1D4F8 /* TranslateTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -539,6 +554,43 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C9F34C5029ACC44300D2B326 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickclephas/KMM-ViewModel.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		C9F34C5529ACC8C300D2B326 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/rickclephas/KMP-NativeCoroutines.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C9F34C5129ACC44300D2B326 /* KMMViewModelCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9F34C5029ACC44300D2B326 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			productName = KMMViewModelCore;
+		};
+		C9F34C5329ACC44300D2B326 /* KMMViewModelSwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9F34C5029ACC44300D2B326 /* XCRemoteSwiftPackageReference "KMM-ViewModel" */;
+			productName = KMMViewModelSwiftUI;
+		};
+		C9F34C5629ACC8C300D2B326 /* KMPNativeCoroutinesCombine */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C9F34C5529ACC8C300D2B326 /* XCRemoteSwiftPackageReference "KMP-NativeCoroutines" */;
+			productName = KMPNativeCoroutinesCombine;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7555FF73242A565900829871 /* Project object */;
 }

@@ -1,7 +1,6 @@
 plugins {
     id("com.android.application")
     kotlin("android")
-    id("dagger.hilt.android.plugin")
     kotlin("plugin.serialization") version Deps.kotlinVersion
     id("kotlin-kapt")
 }
@@ -57,11 +56,6 @@ dependencies {
     implementation(Deps.composeNavigation)
     implementation(Deps.coilCompose)
 
-    implementation(Deps.hiltAndroid)
-    kapt(Deps.hiltAndroidCompiler)
-    kapt(Deps.hiltCompiler)
-    implementation(Deps.hiltNavigationCompose)
-
     implementation(Deps.ktorAndroid)
 
     androidTestImplementation(Deps.testRunner)
@@ -69,6 +63,16 @@ dependencies {
     androidTestImplementation(Deps.composeTesting)
     debugImplementation(Deps.composeTestManifest)
 
-    kaptAndroidTest(Deps.hiltAndroidCompiler)
-    androidTestImplementation(Deps.hiltTesting)
+
+    implementation(Deps.kmmViewModel)
+    implementation(Deps.viewModel)
+    implementation(Deps.viewModelCompose)
+
+
+    with(Deps.Koin) {
+        api(core)
+        api(android)
+        api(compose)
+    }
+
 }

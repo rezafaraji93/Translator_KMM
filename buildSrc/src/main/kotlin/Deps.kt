@@ -25,14 +25,6 @@ object Deps {
     private const val dateTimeVersion = "0.4.0"
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:$dateTimeVersion"
 
-    // HILT
-    private const val hiltVersion = "2.44"
-    private const val hiltCompilerVersion = "1.0.0"
-    const val hiltAndroid = "com.google.dagger:hilt-android:$hiltVersion"
-    const val hiltAndroidCompiler = "com.google.dagger:hilt-android-compiler:$hiltVersion"
-    const val hiltCompiler = "androidx.hilt:hilt-compiler:$hiltCompilerVersion"
-    const val hiltNavigationCompose = "androidx.hilt:hilt-navigation-compose:$hiltCompilerVersion"
-
     // KTOR
     private const val ktorVersion = "2.2.3"
     const val ktorCore = "io.ktor:ktor-client-core:$ktorVersion"
@@ -51,7 +43,6 @@ object Deps {
     private const val sqlDelightGradleVersion = "2.0.0-alpha05"
     const val sqlDelightGradlePlugin = "app.cash.sqldelight:gradle-plugin:$sqlDelightGradleVersion"
 
-    const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$hiltVersion"
 
     // SQLDELIGHT
     private const val sqlDelightVersion = "2.0.0-alpha05"
@@ -76,5 +67,22 @@ object Deps {
     const val composeTesting = "androidx.compose.ui:ui-test-junit4:$composeVersion"
     const val composeTestManifest = "androidx.compose.ui:ui-test-manifest:$composeVersion"
 
-    const val hiltTesting = "com.google.dagger:hilt-android-testing:$hiltVersion"
+    // Lifecycle
+    private const val lifecycleVersion = "2.5.1"
+    const val viewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    const val viewModelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycleVersion"
+
+    // KMM Shared ViewModel
+    private const val kmmViewModelVersion = "1.0.0-ALPHA-4"
+    const val kmmViewModel = "com.rickclephas.kmm:kmm-viewmodel-core:$kmmViewModelVersion"
+
+    object Koin {
+        private const val koinVersion = "3.3.3"
+        const val core = "io.insert-koin:koin-core:$koinVersion"
+        const val test = "io.insert-koin:koin-test:$koinVersion"
+        const val android = "io.insert-koin:koin-android:$koinVersion"
+
+        private const val koinComposeVersion = "3.4.2"
+        const val compose = "io.insert-koin:koin-androidx-compose:$koinComposeVersion"
+    }
 }
