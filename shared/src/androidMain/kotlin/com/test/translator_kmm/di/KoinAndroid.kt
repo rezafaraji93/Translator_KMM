@@ -11,6 +11,7 @@ import com.test.translator_kmm.translate.domain.translate.Translate
 import com.test.translator_kmm.translate.domain.translate.TranslateClient
 import io.ktor.client.*
 import org.koin.core.module.Module
+import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
 
 actual fun platformModule(): Module {
@@ -18,8 +19,8 @@ actual fun platformModule(): Module {
         single { createDatabase(get()) }
         single { createHttpClient() }
         single<HistoryDataSource> { SqlDelightHistoryDataSource(get()) }
-        single<TranslateClient> { KtorTranslateClient(createHttpClient()) }
-        single { Translate(get(), get()) }
+        single<TranslateClient> { KtorTranslateClient(get()) }
+        singleOf(::Translate)
     }
 }
 
