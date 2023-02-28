@@ -9,17 +9,10 @@
 import SwiftUI
 import shared
 import FirebaseCore
+import KMMViewModelSwiftUI
 
 struct TranslateScreen: View {
-    private var historyDataSource: HistoryDataSource
-    private var translateUseCase: Translate
-    @ObservedObject var viewModel: IOSTranslateViewModel
-    
-    init(historyDataSource: HistoryDataSource, translateUseCase: Translate) {
-        self.historyDataSource = historyDataSource
-        self.translateUseCase = translateUseCase
-        self.viewModel = IOSTranslateViewModel(historyDataSource: historyDataSource, translateUseCase: translateUseCase)
-    }
+    @StateViewModel var viewModel = TranslateViewModelShared()
     
     var body: some View {
         ZStack {
@@ -95,12 +88,6 @@ struct TranslateScreen: View {
                     .frame(maxWidth: 100, maxHeight: 100)
                 }
             }
-        }
-        .onAppear {
-            viewModel.startObserving()
-        }
-        .onDisappear {
-            viewModel.dispose()
         }
     }
 }

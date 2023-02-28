@@ -10,10 +10,11 @@ import io.ktor.client.call.*
 import io.ktor.client.request.*
 import io.ktor.http.*
 import io.ktor.utils.io.errors.*
+import org.koin.core.component.KoinComponent
 
 class KtorTranslateClient(
     private val httpClient: HttpClient
-) : TranslateClient {
+) : TranslateClient, KoinComponent {
 
     override suspend fun translate(
         fromlanguage: Language, fromText: String, toLanguage: Language

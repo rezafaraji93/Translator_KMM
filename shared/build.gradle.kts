@@ -2,8 +2,10 @@ plugins {
     kotlin("multiplatform")
     kotlin("native.cocoapods")
     id("com.android.library")
+    id("com.google.devtools.ksp") version "1.8.10-1.0.9"
     kotlin("plugin.serialization") version Deps.kotlinVersion
     id("app.cash.sqldelight")
+    id("com.rickclephas.kmp.nativecoroutines") version "1.0.0-ALPHA-5"
 }
 
 kotlin {
@@ -39,6 +41,12 @@ kotlin {
                 implementation(Deps.sqlDelightRuntime)
                 implementation(Deps.sqlDelightCoroutinesExtensions)
                 implementation(Deps.kotlinDateTime)
+                implementation(Deps.kmmViewModel)
+
+                with(Deps.Koin) {
+                    api(core)
+                    api(test)
+                }
             }
         }
         val commonTest by getting {
@@ -50,6 +58,11 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+
+                implementation(Deps.kmmViewModel)
+                implementation(Deps.viewModel)
+                implementation(Deps.viewModelCompose)
+
                 implementation(Deps.ktorAndroid)
                 implementation(Deps.sqlDelightAndroidDriver)
             }
@@ -96,4 +109,8 @@ sqldelight {
             packageName.set("com.test.translator_kmm.database")
         }
     }
+}
+
+kotlin.sourceSets.all {
+    languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
 }
